@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natasya Pradini Putri | Data & Analytics Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root,:root[data-theme="dark"]{--bg:#0d1310;--g1:rgba(63,125,95,.22);--g2:rgba(176,120,72,.16);--surface:#141c17;--surface-2:#1a251f;--border:#263229;--text:#ede8dc;--muted:#97a39a;--green:#55a37a;--brown:#c8905e;--brown-strong:#b3774a;--on-brown:#1a110a;--nav-bg:rgba(13,19,16,.82);--shadow:0 20px 50px rgba(0,0,0,.35)}
+:root[data-theme="light"]{--bg:#f4ecdc;--g1:rgba(63,125,95,.10);--g2:rgba(176,120,72,.14);--surface:#fbf6ea;--surface-2:#ece3d0;--border:#dcd0b8;--text:#1d2822;--muted:#627068;--green:#2c6a4d;--brown:#8f5b32;--brown-strong:#8f5b32;--on-brown:#fff;--nav-bg:rgba(244,236,220,.9);--shadow:0 14px 36px rgba(30,40,34,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:"Plus Jakarta Sans",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;transition:background .3s,color .3s}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(700px 420px at 72% -5%,var(--g2),transparent 70%),radial-gradient(800px 500px at 10% 8%,var(--g1),transparent 70%);pointer-events:none}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+.mono{font-family:"JetBrains Mono",monospace}
+.nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 28px;height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-weight:800;font-size:17px;letter-spacing:-.4px}
+.brand::after{content:".";color:var(--brown)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);padding:8px 15px;border-radius:999px;transition:.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--brown);background:color-mix(in srgb,var(--brown) 14%,transparent)}
+.nav-tools{display:flex;align-items:center;gap:8px}
+.pill-btn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;height:38px;padding:0 14px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:7px;transition:.2s}
+.pill-btn:hover{border-color:var(--brown)}
+.icon-btn{width:38px;padding:0;justify-content:center;font-size:15px}
+.menu-btn{display:none}
+.cv-menu{position:relative}
+.cv-menu .caret{font-size:10px;opacity:.7}
+.cv-dropdown{display:none;position:absolute;right:0;top:46px;min-width:190px;z-index:60;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:6px;box-shadow:var(--shadow)}
+.cv-menu.open .cv-dropdown{display:block}
+.cv-dropdown a{display:block;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:500;transition:.15s}
+.cv-dropdown a:hover{background:color-mix(in srgb,var(--brown) 14%,transparent);color:var(--brown)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 22px;border-radius:999px;font-size:13px;font-weight:700;border:1px solid transparent;transition:.2s}
+.btn-primary{background:var(--brown-strong);color:var(--on-brown);box-shadow:0 8px 24px color-mix(in srgb,var(--brown) 30%,transparent)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-ghost{background:var(--surface);border-color:var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--green)}
+.hero{min-height:calc(100vh - 70px);display:grid;grid-template-columns:1.25fr .75fr;gap:60px;align-items:center;padding:60px 0 70px}
+.status{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--border);font-size:12px;color:var(--muted)}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 25%,transparent)}
+.hello{margin-top:28px;color:var(--brown);font-weight:600;font-size:16px}
+h1{margin-top:6px;font-size:clamp(26px,4.2vw,48px);line-height:1.1;letter-spacing:-1.2px;font-weight:700;white-space:nowrap}
+.hero-role{margin-top:10px;font-size:14px;font-weight:600;color:var(--green)}
+.hero-text{margin-top:22px;max-width:560px;color:var(--muted);font-size:16px}
+.hero-text b{color:var(--text);font-weight:600}
+.stats{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden;max-width:560px}
+.stat{padding:18px 16px;text-align:center;border-right:1px solid var(--border)}
+.stat:last-child{border-right:0}
+.stat strong{display:block;font-size:24px;font-weight:800;color:var(--brown);letter-spacing:-.5px}
+.stat span{font-size:11.5px;color:var(--muted)}
+.photo-wrap{display:flex;justify-content:center}
+.photo-ring{width:min(380px,80vw);aspect-ratio:1;border-radius:50%;padding:4px;background:conic-gradient(from 200deg,var(--brown),var(--green),var(--brown));box-shadow:0 18px 50px color-mix(in srgb,var(--brown) 20%,transparent)}
+.photo-inner{width:100%;height:100%;border-radius:50%;overflow:hidden;background:var(--surface-2);display:grid;place-items:center}
+.photo-inner img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.photo-fallback{font-size:72px;font-weight:800;color:var(--brown);letter-spacing:-3px}
+section{padding:90px 0 10px}
+.sec-head{text-align:center;margin-bottom:44px}
+.sec-pill{display:inline-block;padding:8px 22px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--brown);background:color-mix(in srgb,var(--brown) 12%,transparent);border:1px solid color-mix(in srgb,var(--brown) 35%,transparent)}
+.sec-sub{margin:16px auto 0;max-width:560px;color:var(--muted);font-size:14px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px}
+.card-title{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:700;margin-bottom:14px}
+.card-title::before{content:"";width:5px;height:20px;border-radius:3px;background:var(--brown)}
+.card p{color:var(--muted)}
+.card p+p{margin-top:12px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.edu-name{font-weight:700;font-size:16px}
+.edu-meta{color:var(--muted);font-size:13px}
+.gpa-row{margin-top:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.gpa-num{font-size:34px;font-weight:800;color:var(--green);letter-spacing:-1px}
+.mini-links{display:flex;gap:8px;flex-wrap:wrap}
+.mini{display:inline-block;font-size:11.5px;font-weight:600;padding:7px 13px;border-radius:999px;border:1px solid var(--border);color:var(--green);background:var(--surface-2);transition:.2s}
+.mini:hover{border-color:var(--green)}
+.edu-sub{margin-top:22px;padding-top:18px;border-top:1px solid var(--border)}
+.edu-sub p,.edu-p{font-size:13px;margin-top:10px}
+.skills{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.skill h3{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--brown);font-weight:700;margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{padding:6px 11px;border-radius:8px;font-size:12px;font-weight:500;background:var(--surface-2);border:1px solid var(--border)}
+.tag.mono{font-size:11.5px}
+.featured{border-radius:18px;padding:40px;background:linear-gradient(135deg,color-mix(in srgb,var(--green) 22%,var(--surface)),var(--surface) 62%);border:1px solid color-mix(in srgb,var(--green) 40%,var(--border));box-shadow:var(--shadow)}
+.feat-label{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--brown);font-weight:700}
+.featured h3{margin-top:10px;font-size:26px;line-height:1.25;letter-spacing:-.5px;max-width:760px}
+.featured .lead{margin-top:12px;color:var(--muted);max-width:720px}
+.flow{margin-top:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.flow-step{background:color-mix(in srgb,var(--bg) 55%,transparent);border:1px solid var(--border);border-radius:14px;padding:18px}
+.flow-step .n{font-size:11px;color:var(--brown);font-weight:500}
+.flow-step h4{margin:6px 0;font-size:14px}
+.flow-step p{font-size:12.5px;color:var(--muted);line-height:1.6}
+.metrics{margin-top:26px;display:flex;flex-wrap:wrap;gap:14px}
+.metric{min-width:130px;padding:14px 20px;border-radius:14px;background:var(--surface);border:1px solid var(--border)}
+.metric strong{display:block;font-size:26px;font-weight:800;color:var(--brown);letter-spacing:-.8px}
+.metric span{font-size:11.5px;color:var(--muted)}
+.proj-grid{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.proj{display:flex;flex-direction:column;transition:.25s}
+.proj:hover{transform:translateY(-4px);border-color:var(--brown)}
+.proj-type{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--green);font-weight:700}
+.proj h3{margin-top:8px;font-size:18px;line-height:1.35}
+.proj dl{margin-top:16px;display:grid;gap:10px}
+.proj dt{font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--brown);font-weight:700}
+.proj dd{color:var(--muted);font-size:13px;line-height:1.6}
+.proj .tags{margin-top:18px}
+.proj-link{margin-top:auto;padding-top:20px;font-size:12.5px;font-weight:700;color:var(--brown)}
+.proj.placeholder{border-style:dashed;background:transparent}
+.proj.placeholder:hover{transform:none}
+.proj.placeholder h3,.proj.placeholder .proj-link{color:var(--muted)}
+.proj.wide{grid-column:1/-1}
+#proj-powerbi{margin-bottom:22px}
+.proj ul{margin-top:8px;padding-left:18px;display:grid;gap:4px}
+.proj .docs{order:1}
+.proj .doc-grid{grid-template-columns:repeat(3,1fr)}
+.proj-files{order:2;margin-top:auto;padding-top:20px}
+@media(max-width:640px){.proj .doc-grid{grid-template-columns:1fr}}
+.chips{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+.chip{height:38px;padding:0 18px;border-radius:999px;font-size:12.5px;font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--muted);transition:.2s}
+.chip.active,.chip:hover{color:var(--brown);border-color:var(--brown);background:color-mix(in srgb,var(--brown) 12%,transparent)}
+.timeline{position:relative;max-width:860px;margin:0 auto;padding-left:30px}
+.timeline::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:var(--border)}
+.tl-item{position:relative;padding:0 0 28px}
+.tl-item::before{content:"";position:absolute;left:-29px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--brown)}
+.tl-item.hide{display:none}
+.tl-card{padding:22px 26px}
+.tl-top{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline}
+.tl-top h3{font-size:16.5px}
+.tl-date{font-size:11.5px;color:var(--muted)}
+.tl-org{margin-top:2px;color:var(--green);font-weight:600;font-size:13px}
+.tl-card p{margin-top:10px;font-size:13.5px;color:var(--muted)}
+.tl-kind{display:inline-block;margin-top:12px;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--surface-2);color:var(--muted);border:1px solid var(--border)}
+/* documentation gallery */
+.docs{margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.docs[hidden]{display:none}
+.docs-label{font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--brown);font-weight:700;margin-bottom:10px}
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.doc-thumb{padding:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface-2);cursor:zoom-in;width:100%}
+.doc-thumb img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.85);display:grid;place-items:center;padding:24px;cursor:zoom-out}
+.lightbox img{max-width:100%;max-height:100%;border-radius:10px}
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cert{display:flex;flex-direction:column;min-height:170px}
+.cert .issuer{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--green);font-weight:700}
+.cert h3{margin-top:8px;font-size:16px}
+.cert p{margin-top:8px;font-size:13px}
+.cert .mini{align-self:flex-start;margin-top:12px}
+.cert-foot{gap:10px;margin-top:auto;padding-top:18px;display:flex;justify-content:space-between;align-items:center}
+.cert-foot span{font-size:11.5px;color:var(--muted)}
+.cert-id{font-size:10.5px;word-break:break-all;text-align:right}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contact-line{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--border);font-size:14px;transition:.2s}
+.contact-line:last-child{border-bottom:0}
+.contact-line small{color:var(--muted);font-size:12px}
+.contact-line:hover{color:var(--brown)}
+footer{margin-top:90px;padding:26px 0 40px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media(max-width:960px){
+.nav-links{display:none;position:absolute;top:70px;left:0;right:0;flex-direction:column;padding:14px 28px 20px;background:var(--bg);border-bottom:1px solid var(--border)}
+.nav-links.open{display:flex}
+.menu-btn{display:inline-flex}
+.hero{grid-template-columns:1fr;gap:50px;padding-top:40px;min-height:0}
+.photo-wrap{order:-1}
+.two-col,.contact{grid-template-columns:1fr}
+.skills,.flow,.cert-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+.wrap,.nav-inner{padding-left:18px;padding-right:18px}
+.nav-links{padding-left:18px;padding-right:18px}
+.proj-grid,.cert-grid,.skills,.flow{grid-template-columns:1fr}
+.featured{padding:26px}
+.stats{grid-template-columns:1fr}
+.stat{border-right:0;border-bottom:1px solid var(--border)}
+.stat:last-child{border-bottom:0}
+.cv-label{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand" data-i18n="brand">Portfolio</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" data-i18n="nav_home" class="active">Home</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#projects" data-i18n="nav_projects">Projects</a>
+      <a href="#experience" data-i18n="nav_exp">Experience</a>
+      <a href="#certifications" data-i18n="nav_cert">Certifications</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <div class="cv-menu" id="cvMenu">
+        <button class="pill-btn" id="cvBtn" type="button" aria-haspopup="true" aria-expanded="false">
+          <span>↓</span><span class="cv-label" data-i18n="cv">Download CV</span><span class="caret">▾</span>
+        </button>
+        <div class="cv-dropdown">
+          <a href="cvindonesia.pdf" download>CV Bahasa Indonesia</a>
+          <a href="cvenglish.pdf" download>CV English</a>
+        </div>
+      </div>
+      <button class="pill-btn" id="langBtn" type="button">EN / ID</button>
+      <button class="pill-btn icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">☾</button>
+      <button class="pill-btn icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- HOME -->
+<section id="home" style="padding-top:0">
+  <div class="hero">
+    <div>
+      <div class="status"><i></i><span data-i18n="status">Open to work · Data & Business Analytics</span></div>
+      <p class="hello" data-i18n="hello">Hi, I'm</p>
+      <h1>Natasya Pradini Putri</h1>
+      <p class="hero-role" data-i18n="role">Data & Business Analytics · Finance & Operations</p>
+      <p class="hero-text" data-i18n-html="hero_text">Mathematics graduate from <b>Universitas Padjadjaran (2026)</b> with hands-on experience in <b>data analysis, dashboard and performance reporting, and e-commerce operations</b>, using Power BI, Excel, SQL, Python, R, and Looker Studio to turn data into decisions.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn btn-primary" data-i18n="btn_contact">Contact Me</a>
+        <a href="#projects" class="btn btn-ghost"><span data-i18n="btn_projects">View Projects</span> →</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>1</strong><span data-i18n="stat3">Power BI dashboard (3 pages)</span></div>
+        <div class="stat"><strong>2</strong><span data-i18n="stat2">Published papers</span></div>
+        <div class="stat"><strong>1</strong><span data-i18n="stat1">Copyright registered (HKI)</span></div>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <div class="photo-ring"><div class="photo-inner">
+        <img src="fotocover.jpg" alt="Natasya Pradini Putri" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="photo-fallback" style="display:none">NP</span>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-head reveal"><span class="sec-pill" data-i18n="about_pill">About Me</span></div>
+  <div class="two-col reveal">
+    <div class="card">
+      <div class="card-title" data-i18n="profile_title">Profile Summary</div>
+      <p data-i18n="profile_1">I'm a Mathematics graduate from Universitas Padjadjaran (GPA 3.39/4.00). I enjoy turning messy data into something people can actually use, whether that's a Power BI dashboard, an Excel report, or a model in Python or R.</p>
+      <p data-i18n="profile_2">One project I'm proud of is a Power BI dashboard on Indonesian inflation and the BI Rate. Before that, I worked with sales and inventory data in Excel, made client performance reports in Looker Studio, and handled finances in student organizations and during a bank internship. I like work that is tidy, accurate, and done on time.</p>
+    </div>
+    <div class="card">
+      <div class="card-title" data-i18n="edu_title">Education</div>
+      <div class="edu-name" data-i18n="edu_name">Bachelor of Mathematics</div>
+      <div class="edu-meta">Universitas Padjadjaran, Sumedang · 2022 – 2026</div>
+      <p class="edu-p" data-i18n="edu_p">Strong foundation in statistics, quantitative analysis, and mathematical modeling, with practical experience using Python, R, and Microsoft Excel.</p>
+      <div class="gpa-row">
+        <div class="gpa-num">3.39</div>
+        <div class="mini-links">
+          <a href="ijazah.pdf" target="_blank" class="mini" data-i18n="skl">View Diploma</a>
+          <a href="transkrip.pdf" target="_blank" class="mini" data-i18n="transcript">View Transcript</a>
+        </div>
+      </div>
+      <div class="edu-sub">
+        <div class="edu-name" data-i18n="edu2_name">Accounting and Financial Institution</div>
+        <div class="edu-meta">SMK Negeri 1 Surabaya · 2018 – 2021</div>
+        <p data-i18n="edu2_p">Foundations in accounting, transaction recording, financial administration, and financial statement preparation.</p>
+        <div class="mini-links" style="margin-top:14px">
+          <a href="ijazahsmk.pdf" target="_blank" class="mini" data-i18n="skl">View Diploma</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card skills reveal">
+    <div class="skill"><h3 data-i18n="sk1">Data & Analytics</h3><div class="tags">
+      <span class="tag">Data Visualization</span><span class="tag">Dashboard & Reporting</span><span class="tag">Data Modeling</span><span class="tag">Exploratory Data Analysis (EDA)</span><span class="tag">Data Cleaning</span><span class="tag">Data Validation</span><span class="tag">Data Transformation</span><span class="tag">Statistical Analysis</span><span class="tag">Performance Analysis</span><span class="tag">Trend and Variance Analysis</span><span class="tag">Predictive Modeling</span></div></div>
+    <div class="skill"><h3 data-i18n="sk2">E-Commerce & Operations</h3><div class="tags">
+      <span class="tag">Sales Data Processing</span><span class="tag">Order Administration</span><span class="tag">Inventory Monitoring</span><span class="tag">Payment and Return Administration</span><span class="tag">Sales Reporting</span><span class="tag">Marketplace Account and Digital Campaign Performance Monitoring</span></div></div>
+    <div class="skill"><h3 data-i18n="sk3">Spreadsheet & Software</h3><div class="tags">
+      <span class="tag">Power BI</span><span class="tag mono">DAX</span><span class="tag">Microsoft Excel</span><span class="tag mono">SQL</span><span class="tag mono">Python</span><span class="tag mono">R</span><span class="tag">Looker Studio</span><span class="tag">Google Sheets</span><span class="tag">KNIME</span><span class="tag">Jupyter Notebook</span></div></div>
+    <div class="skill"><h3 data-i18n="sk4">Spreadsheet Functions</h3><div class="tags">
+      <span class="tag mono">SUMIFS</span><span class="tag mono">SUMIF</span><span class="tag mono">COUNTIF</span><span class="tag mono">VLOOKUP</span><span class="tag mono">XLOOKUP</span><span class="tag mono">IF</span><span class="tag">Pivot Tables</span></div></div>
+    <div class="skill"><h3 data-i18n="sk5">Professional Skills</h3><div class="tags">
+      <span class="tag" data-i18n="ss1">Analytical Thinking</span><span class="tag" data-i18n="ss2">Problem Solving</span><span class="tag" data-i18n="ss7">Attention to Detail</span><span class="tag" data-i18n="ss3">Communication</span><span class="tag" data-i18n="ss4">Teamwork</span><span class="tag" data-i18n="ss6">Time Management</span></div></div>
+    <div class="skill"><h3 data-i18n="sk6">Languages</h3><div class="tags">
+      <span class="tag" data-i18n="lang1">Indonesian — Proficient</span><span class="tag" data-i18n="lang2">English — Intermediate</span></div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-head reveal">
+    <span class="sec-pill" data-i18n="proj_pill">Projects & Research</span>
+    <p class="sec-sub" data-i18n="proj_sub">Each project is written as a short case study: the question, the data, the method, and what came out of it.</p>
+  </div>
+
+  <article class="card proj reveal" id="proj-powerbi" data-docs="dashboardinflasi" data-max="3" data-label-key="dash_docs" data-label-text="Dashboard Preview">
+    <div class="proj-type" data-i18n="pb_type">Dashboard · Completed</div>
+    <h3 data-i18n="pb_h">Indonesia Inflation Monitoring & Analysis Dashboard</h3>
+    <dl>
+      <div><dt data-i18n="d_q">Question</dt><dd data-i18n="pb_q">How have Indonesia’s inflation trends evolved over time? Which inflation components contribute to price movements, and how do changes in the BI Rate relate to inflation trends?</dd></div>
+      <div><dt data-i18n="d_m">Method</dt><dd>
+        <span data-i18n="pb_m1">Developed an interactive, three-page dashboard using monthly Indonesian inflation and BI Rate data. The analysis involved data preparation, date table creation, data modeling, DAX measure development, and time-series visualization.</span>
+        <span data-i18n="pb_m2" style="display:block;margin-top:8px">The dashboard covers:</span>
+        <ul>
+          <li data-i18n="pb_l1">Inflation Overview: Tracks headline inflation (YoY, MtM, and YtD) and BI Rate trends.</li>
+          <li data-i18n="pb_l2">Inflation Drivers: Compares Core Inflation, Volatile Food, and Administered Prices over time.</li>
+          <li data-i18n="pb_l3">Monetary Policy Analysis: Explores the relationship between BI Rate movements and year-on-year inflation.</li>
+        </ul>
+      </dd></div>
+    </dl>
+    <div class="tags"><span class="tag">Power BI</span><span class="tag mono">DAX</span><span class="tag">Microsoft Excel</span></div>
+    <!-- gambar: dokumentasi/dashboardinflasi1.png, 2.png, 3.png (otomatis muncul di sini) -->
+    <div class="proj-files">
+      <div class="mini-links">
+        <a href="dokumentasi/dashboardinflasi.pdf" target="_blank" class="mini" data-i18n="pb_pdf">Dashboard Report (PDF)</a>
+        <a href="dokumentasi/dashboardinflasi.pbix" download class="mini" data-i18n="pb_pbix">Power BI File (.pbix)</a>
+      </div>
+      <p style="margin-top:12px;font-size:12px;color:var(--muted)" data-i18n="pb_note">The interactive report can be explored using Power BI Desktop.</p>
+    </div>
+  </article>
+
+  <article class="featured reveal" id="proj-thesis" data-docs="skripsi" data-max="6" data-label-key="thesis_docs" data-label-text="Thesis Visuals">
+    <div class="feat-label" data-i18n="feat_label">Featured · Undergraduate Thesis</div>
+    <h3>Model Regresi Random Forest untuk Prediksi Land Surface Temperature di Kota Surabaya dengan Interpretasi Feature Importance</h3>
+    <p class="lead" data-i18n="feat_lead">Can surface temperature in Surabaya be predicted from land, climate, and population variables, and which of them matter most?</p>
+    <div class="flow">
+      <div class="flow-step"><div class="n mono">01</div><h4 data-i18n="f1_t">Data</h4><p data-i18n="f1_p">Landsat LST via Google Earth Engine, NASA POWER and BMKG climate data, plus demographic and spatial variables.</p></div>
+      <div class="flow-step"><div class="n mono">02</div><h4 data-i18n="f2_t">Preparation</h4><p data-i18n="f2_p">Spatio-temporal data processing, preprocessing, and variable selection on a 600 m grid of Surabaya, using Python and KNIME.</p></div>
+      <div class="flow-step"><div class="n mono">03</div><h4 data-i18n="f3_t">Model</h4><p data-i18n="f3_p">Random Forest regression, optimized and evaluated with Grid Search and 5-fold cross-validation.</p></div>
+      <div class="flow-step"><div class="n mono">04</div><h4 data-i18n="f4_t">Interpretation</h4><p data-i18n="f4_p">Feature importance used to explain which factors drive temperature differences across the city.</p></div>
+    </div>
+    <div class="metrics">
+      <div class="metric"><strong>0.872</strong><span>R²</span></div>
+      <div class="metric"><strong>4.3%</strong><span>MAPE</span></div>
+      <div class="metric"><strong>600 m</strong><span data-i18n="grid">Grid size</span></div>
+    </div>
+  </article>
+
+  <div class="proj-grid">
+    <article class="card proj reveal" id="proj-btn">
+      <div class="proj-type" data-i18n="p1_type">Publication · First Author · IJGOR · Nov 2025</div>
+      <h3>Application of the Geometric Brownian Motion Model and Value at Risk Calculation on the Stock of PT Bank Tabungan Negara (Persero) Tbk</h3>
+      <dl>
+        <div><dt data-i18n="d_q">Question</dt><dd data-i18n="p1_q">How much could a BTN stock position lose over a given period?</dd></div>
+        <div><dt data-i18n="d_m">Method</dt><dd data-i18n="p1_m">Modelled price movement with Geometric Brownian Motion and estimated Value at Risk using Monte Carlo simulation.</dd></div>
+      </dl>
+      <div class="tags"><span class="tag mono">R</span><span class="tag mono">Python</span><span class="tag">GBM</span><span class="tag">VaR</span><span class="tag">Monte Carlo</span></div>
+      <a class="proj-link" href="https://iorajournal.org/index.php/ijgor/article/view/407/357" target="_blank" rel="noopener" data-i18n="read_paper">Read Paper →</a>
+    </article>
+
+    <article class="card proj reveal" id="proj-bca">
+      <div class="proj-type" data-i18n="p2_type">Publication · Second Author · IJGOR · Aug 2024</div>
+      <h3>Analysis of Put and Call Option Pricing on BCA Stock Using the Black-Scholes Model: Financial and Risk Management Perspective</h3>
+      <dl>
+        <div><dt data-i18n="d_q">Question</dt><dd data-i18n="p2_q">How should put and call options on BCA stock be priced, and what does that say about risk?</dd></div>
+        <div><dt data-i18n="d_m">Method</dt><dd data-i18n="p2_m">Applied the Black-Scholes model to BCA stock data with a financial and risk-management perspective.</dd></div>
+      </dl>
+      <div class="tags"><span class="tag mono">R</span><span class="tag">Black-Scholes</span><span class="tag" data-i18n="p2_t">Option Pricing</span></div>
+      <a class="proj-link" href="https://www.researchgate.net/publication/383562251_Analysis_of_Put_and_Call_Option_Pricing_on_BCA_Stock_Using_the_Black-Scholes_Model_Financial_and_Risk_Management_Perspective" target="_blank" rel="noopener" data-i18n="read_paper">Read Paper →</a>
+    </article>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-head reveal"><span class="sec-pill" data-i18n="exp_pill">Experience</span></div>
+  <div class="chips reveal">
+    <button class="chip active" data-filter="all" data-i18n="c_all" type="button">All</button>
+    <button class="chip" data-filter="work" data-i18n="c_work" type="button">Work</button>
+    <button class="chip" data-filter="intern" data-i18n="c_intern" type="button">Internship</button>
+    <button class="chip" data-filter="org" data-i18n="c_org" type="button">Organization</button>
+  </div>
+
+  <!-- data-docs = awalan nama file di folder dokumentasi/ (contoh: tutor-mtk-1.png) -->
+  <div class="timeline">
+    <div class="tl-item reveal" data-kind="work" data-docs="tutor-mtk"><div class="card tl-card">
+      <div class="tl-top"><h3 data-i18n="t1_t">Mathematics Tutor</h3><span class="tl-date mono" data-i18n="t1_d">Feb 2026 — Present</span></div>
+      <div class="tl-org">Algonova, Indonesia</div>
+      <p data-i18n="t1_p">Manage private and group learning sessions for 70+ students and monitor progress from exercise and assessment results. Prepare periodic progress reports and communicate results to parents and the institution.</p>
+      <span class="tl-kind" data-i18n="k_work">Work</span></div></div>
+
+    <div class="tl-item reveal" data-kind="intern" data-docs="magang-am"><div class="card tl-card">
+      <div class="tl-top"><h3 data-i18n="t2_t">Account Management Intern</h3><span class="tl-date mono" data-i18n="t2_d">Feb — May 2026</span></div>
+      <div class="tl-org">Katalis AI</div>
+      <p data-i18n="t2_p">Monitored and reported the performance of multiple client accounts (marketplace, digital content, campaigns) in Looker Studio. Tracked performance for follow-up with the Account Management and Design teams, managed tasks in Lark Docs, and prepared Minutes of Meeting for client meetings.</p>
+      <span class="tl-kind" data-i18n="k_intern">Internship</span></div></div>
+
+    <div class="tl-item reveal" data-kind="intern" data-docs="magang-btn"><div class="card tl-card">
+      <div class="tl-top"><h3 data-i18n="t3_t">Branch Operations Intern</h3><span class="tl-date mono" data-i18n="t3_d">Jul — Aug 2025</span></div>
+      <div class="tl-org">PT Bank Tabungan Negara (Persero) Tbk</div>
+      <p data-i18n="t3_p">Supported daily branch operations and administrative processes, reviewed and processed operational data and documents for accuracy, and organized financial and operational records.</p>
+      <span class="tl-kind" data-i18n="k_intern">Internship</span></div></div>
+
+    <div class="tl-item reveal" data-kind="org" data-docs="kabir-keuangan"><div class="card tl-card">
+      <div class="tl-top"><h3 data-i18n="t4_t">Head of Finance Bureau</h3><span class="tl-date mono" data-i18n="t4_d">May 2024 — Mar 2025</span></div>
+      <div class="tl-org">BEM KEMA FMIPA Unpad</div>
+      <p data-i18n="t4_p">Led a team of four in financial planning, monitoring, and reporting. Managed an annual budget of more than IDR 80 million across 29 programs, including realization monitoring and variance evaluation, and developed financial regulations and controls for transparency.</p>
+      <span class="tl-kind" data-i18n="k_org">Organization</span></div></div>
+
+    <div class="tl-item reveal" data-kind="org" data-docs="mpc"><div class="card tl-card">
+      <div class="tl-top"><h3 data-i18n="t5_t">Treasurer I</h3><span class="tl-date mono" data-i18n="t5_d">Feb — Jun 2024</span></div>
+      <div class="tl-org">Mathematics Profession Campaign</div>
+      <p data-i18n="t5_p">Managed event finances for 120+ participants, covering budget allocation, expenditure monitoring, fund utilization, and timely accountability reports.</p>
+      <span class="tl-kind" data-i18n="k_org">Organization</span></div></div>
+
+    <div class="tl-item reveal" data-kind="org" data-docs="ph-himatika"><div class="card tl-card">
+      <div class="tl-top"><h3 data-i18n="t6_t">Treasurer II</h3><span class="tl-date mono" data-i18n="t6_d">Feb 2023 — Jan 2024</span></div>
+      <div class="tl-org">PH Himatika FMIPA Unpad</div>
+      <p data-i18n="t6_p">Managed IDR 15 million in organizational funds, including cash flow and expenditure tracking, collected monthly membership fees, and audited financial reports from 3 departments.</p>
+      <span class="tl-kind" data-i18n="k_org">Organization</span></div></div>
+
+    <div class="tl-item reveal" data-kind="org" data-docs="dies-natalis"><div class="card tl-card">
+      <div class="tl-top"><h3 data-i18n="t7_t">Treasurer I</h3><span class="tl-date mono" data-i18n="t7_d">Aug — Dec 2023</span></div>
+      <div class="tl-org">Dies Natalis Himatika FMIPA Unpad 63rd Anniversary</div>
+      <p data-i18n="t7_p">Led finance for an event with 100+ participants and an IDR 26 million budget. Completed financial accountability reporting without discrepancies within two weeks, generating an estimated 10% budget surplus.</p>
+      <span class="tl-kind" data-i18n="k_org">Organization</span></div></div>
+
+    <div class="tl-item reveal" data-kind="work"><div class="card tl-card">
+      <div class="tl-top"><h3 data-i18n="t8_t">Sales Admin & Data Entry</h3><span class="tl-date mono" data-i18n="t8_d">Dec 2019 — 2021</span></div>
+      <div class="tl-org">Twentyours Online Shop</div>
+      <p data-i18n="t8_p">Managed daily sales administration and order recording, maintained inventory data and Excel sales reports (orders, sales, returns), and monitored stock to support order fulfillment, contributing to an average 20% monthly sales growth.</p>
+      <span class="tl-kind" data-i18n="k_work">Work</span></div></div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="sec-head reveal">
+    <span class="sec-pill" data-i18n="cert_pill">Certifications</span>
+    <p class="sec-sub" data-i18n="cert_sub">Copyright registration and courses relevant to data analytics.</p>
+  </div>
+  <div class="cert-grid">
+    <!-- data-docs="hak-cipta": hak-cipta-1.png, hak-cipta-2.jpg, ... (maks 6) -->
+    <article class="card cert reveal" data-docs="hak-cipta" data-max="6">
+      <div class="issuer" data-i18n="cc1_i">Directorate General of Intellectual Property (DJKI)</div>
+      <h3 data-i18n="cc1_t">Copyright Registration — Computer Program</h3>
+      <p data-i18n="cc1_p">KNIME Workflow for Random Forest Regression Model for Land Surface Temperature Prediction in Surabaya City with Feature Importance Interpretation.</p>
+      <a href="dokumentasi/hakcipta.pdf" target="_blank" class="mini" data-i18n="cert_view">View Certificate</a>
+      <div class="cert-foot"><span class="mono">2026</span><span class="mono cert-id">ID 001455708</span></div>
+    </article>
+    <article class="card cert reveal">
+      <div class="issuer">Udemy</div><h3>Microsoft Power BI – Complete Beginner to Advance Guide 2026</h3>
+      <p data-i18n="cc4_p">Completed a 2.5-hour course taught by Meet Doshi.</p>
+      <a href="https://ude.my/UC-4b53780e-d98c-4116-b9aa-21776dc8c500" target="_blank" rel="noopener" class="mini" data-i18n="cert_view">View Certificate</a>
+      <div class="cert-foot"><span class="mono">2026</span><span class="mono cert-id">No. UC-4b53780e-d98c-4116-b9aa-21776dc8c500</span></div>
+    </article>
+    <article class="card cert reveal">
+      <div class="issuer">MySkill</div><h3>Data Analysis Fundamental</h3>
+      <p data-i18n="cc2_p">Completed the Data Analysis Fundamental course.</p>
+      <a href="dokumentasi/myskilldataanalysis.pdf" target="_blank" class="mini" data-i18n="cert_view">View Certificate</a>
+      <div class="cert-foot"><span class="mono">2026</span><span class="mono cert-id">No. MS-20260906-olY1JJcdMB8TYaZeLKR</span></div>
+    </article>
+    <article class="card cert reveal">
+      <div class="issuer">MySkill</div><h3>Basic SQL</h3>
+      <p data-i18n="cc3_p">Completed the Basic SQL course.</p>
+      <a href="dokumentasi/myskillsql.pdf" target="_blank" class="mini" data-i18n="cert_view">View Certificate</a>
+      <div class="cert-foot"><span class="mono">2026</span><span class="mono cert-id">No. MS-20260906-ksaUPRs9UNEAnqYnF392</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-head reveal"><span class="sec-pill" data-i18n="contact_pill">Let's Connect</span></div>
+  <div class="contact reveal">
+    <div class="card">
+      <div class="card-title" data-i18n="contact_title">Open to collaboration</div>
+      <p data-i18n="contact_p">I'm open to data analytics, business analytics, and finance roles, as well as quantitative projects and discussions. Feel free to reach out through any channel on the right.</p>
+      <div class="btn-row">
+        <a href="mailto:thsyanatasya@gmail.com" class="btn btn-primary" data-i18n="email_me">Email Me</a>
+        <a href="cvindonesia.pdf" download class="btn btn-ghost">↓ CV Indonesia</a>
+        <a href="cvenglish.pdf" download class="btn btn-ghost">↓ CV English</a>
+      </div>
+    </div>
+    <div class="card">
+      <a class="contact-line" href="mailto:thsyanatasya@gmail.com"><span>Email</span><small>thsyanatasya@gmail.com ↗</small></a>
+      <a class="contact-line" href="https://www.linkedin.com/in/natasyapradiniputri/" target="_blank" rel="noopener"><span>LinkedIn</span><small>natasyapradiniputri ↗</small></a>
+      <a class="contact-line" href="https://wa.me/6285107199996" target="_blank" rel="noopener"><span>WhatsApp</span><small>+62 851-0719-9996 ↗</small></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap"><span>© 2026 Natasya Pradini Putri</span><span data-i18n="foot">Mathematics · Data · Finance</span></div></footer>
+
+<script>
+/* ---------- DOKUMENTASI (otomatis) ----------
+   Taruh gambar di folder "dokumentasi/" di samping file ini.
+   Nama: <awalan>1, <awalan>2, <awalan>3 (tanpa hyphen) atau <awalan>-1 dst, ekstensi bebas (png/jpg/jpeg/webp).
+   Awalan diatur lewat atribut data-docs di tiap kartu. Gambar yang tidak ada tidak ditampilkan. */
+const EXTS = ["png", "jpg", "jpeg", "webp", "PNG", "JPG", "JPEG"];
+const DOC_DIR = "dokumentasi/";
+
+function openLightbox(src) {
+  const o = document.createElement("div");
+  o.className = "lightbox";
+  const img = document.createElement("img");
+  img.src = src; img.alt = "";
+  o.appendChild(img);
+  o.addEventListener("click", () => o.remove());
+  document.body.appendChild(o);
+}
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") document.querySelectorAll(".lightbox").forEach(x => x.remove());
+});
+
+function candidates(name, n) {
+  const prefixes = [...new Set([name.replace(/-/g, ""), name])];
+  const out = [];
+  prefixes.forEach(p => ["", "-"].forEach(sep => EXTS.forEach(ext => out.push(DOC_DIR + p + sep + n + "." + ext))));
+  return out;
+}
+
+function probe(list, done) {
+  let i = 0;
+  const img = new Image();
+  img.onload = () => done(img.src);
+  img.onerror = () => { i++; if (i < list.length) img.src = list[i]; else done(null); };
+  img.src = list[0];
+}
+
+function buildDocs() {
+  document.querySelectorAll("[data-docs]").forEach(host => {
+    const name = host.dataset.docs, max = +host.dataset.max || 3;
+    const target = host.querySelector(".tl-card") || host;
+    const box = document.createElement("div");
+    box.className = "docs"; box.hidden = true;
+    const label = document.createElement("div");
+    label.className = "docs-label";
+    const lk = host.dataset.labelKey || (host.classList.contains("cert") ? "cert_docs" : "docs");
+    const lt = host.dataset.labelText || (host.classList.contains("cert") ? "Certificate" : "Documentation");
+    label.setAttribute("data-i18n", lk);
+    label.textContent = lt;
+    const grid = document.createElement("div");
+    grid.className = "doc-grid";
+    box.append(label, grid);
+    target.appendChild(box);
+
+    for (let n = 1; n <= max; n++) {
+      probe(candidates(name, n), src => {
+        if (!src) return;
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "doc-thumb"; b.style.order = n;
+        const img = document.createElement("img");
+        img.src = src; img.alt = "";
+        b.appendChild(img);
+        b.addEventListener("click", () => openLightbox(src));
+        grid.appendChild(b);
+        box.hidden = false;
+      });
+    }
+  });
+}
+buildDocs();
+
+/* ---------- TRANSLATIONS ---------- */
+const T = { id: {
+  nav_home:"Beranda",nav_about:"Tentang",nav_projects:"Proyek",nav_exp:"Pengalaman",nav_cert:"Sertifikasi",nav_contact:"Kontak",cv:"Unduh CV",
+  status:"Terbuka untuk kerja · Data & Business Analytics",hello:"Halo, saya",
+  role:"Analitik Data & Bisnis · Keuangan & Operasional",
+  hero_text:"Lulusan Matematika <b>Universitas Padjadjaran (2026)</b> dengan pengalaman langsung di <b>analisis data, dashboard dan pelaporan kinerja, serta operasional e-commerce</b>, memakai Power BI, Excel, SQL, Python, R, dan Looker Studio untuk mengubah data menjadi keputusan.",
+  btn_contact:"Hubungi Saya",btn_projects:"Lihat Proyek",
+  stat1:"Hak cipta terdaftar (HKI)",stat2:"Publikasi ilmiah",stat3:"Dashboard Power BI (3 halaman)",
+  about_pill:"Tentang Saya",profile_title:"Ringkasan Profil",
+  profile_1:"Saya lulusan Matematika Universitas Padjadjaran (IPK 3,39/4,00). Saya suka mengubah data yang berantakan jadi sesuatu yang berguna, entah itu dashboard Power BI, laporan Excel, atau model di Python dan R.",
+  profile_2:"Salah satu proyek yang saya banggakan adalah dashboard Power BI tentang inflasi Indonesia dan BI Rate. Sebelumnya saya biasa mengolah data penjualan dan stok di Excel, membuat laporan performa klien di Looker Studio, dan mengurus keuangan di organisasi kampus serta saat magang di bank. Saya suka kerja yang rapi, akurat, dan selesai tepat waktu.",
+  edu_title:"Pendidikan",edu_name:"Sarjana Matematika",skl:"Lihat Ijazah",transcript:"Lihat Transkrip",
+  edu_p:"Fondasi kuat dalam statistika, analisis kuantitatif, dan pemodelan matematika, dengan pengalaman praktik memakai Python, R, dan Microsoft Excel.",
+  edu2_name:"Akuntansi dan Keuangan Lembaga",edu2_p:"Dasar akuntansi, pencatatan transaksi, administrasi keuangan, dan penyusunan laporan keuangan.",
+  sk1:"Data & Analitik",sk2:"E-Commerce & Operasional",sk3:"Spreadsheet & Software",sk4:"Fungsi Spreadsheet",sk5:"Keterampilan Profesional",sk6:"Bahasa",
+  ss1:"Berpikir Analitis",ss2:"Pemecahan Masalah",ss3:"Komunikasi",ss4:"Kerja Tim",ss6:"Manajemen Waktu",ss7:"Ketelitian",
+  lang1:"Bahasa Indonesia — Mahir",lang2:"Bahasa Inggris — Menengah",
+  proj_pill:"Proyek & Riset",proj_sub:"Setiap proyek ditulis sebagai studi kasus singkat: pertanyaannya, datanya, metodenya, dan hasilnya.",
+  feat_label:"Unggulan · Skripsi",
+  feat_lead:"Bisakah suhu permukaan di Surabaya diprediksi dari variabel lahan, iklim, dan penduduk, dan variabel mana yang paling berpengaruh?",
+  f1_t:"Data",f1_p:"LST Landsat lewat Google Earth Engine, data iklim NASA POWER dan BMKG, serta variabel demografi dan spasial.",
+  f2_t:"Persiapan",f2_p:"Pengolahan data spasio-temporal, prapemrosesan, dan seleksi variabel pada grid 600 m Kota Surabaya, memakai Python dan KNIME.",
+  f3_t:"Model",f3_p:"Regresi Random Forest, dioptimalkan dan dievaluasi dengan Grid Search dan 5-fold cross-validation.",
+  f4_t:"Interpretasi",f4_p:"Feature importance dipakai untuk menjelaskan faktor yang paling memengaruhi perbedaan suhu di kota.",
+  grid:"Ukuran grid",
+  p1_type:"Publikasi · Penulis Pertama · IJGOR · Nov 2025",p2_type:"Publikasi · Penulis Kedua · IJGOR · Agu 2024",
+  d_q:"Pertanyaan",d_m:"Metode",
+  p1_q:"Berapa potensi kerugian posisi saham BTN dalam periode tertentu?",
+  p1_m:"Memodelkan pergerakan harga dengan Geometric Brownian Motion dan menghitung Value at Risk memakai simulasi Monte Carlo.",
+  p2_q:"Bagaimana menentukan harga opsi put dan call saham BCA, dan apa artinya bagi risiko?",
+  p2_m:"Menerapkan model Black-Scholes pada data saham BCA dengan perspektif keuangan dan manajemen risiko.",
+  p2_t:"Penentuan Harga Opsi",read_paper:"Baca Paper →",
+  pb_type:"Dashboard · Selesai",pb_h:"Dashboard Pemantauan & Analisis Inflasi Indonesia",
+  pb_q:"Bagaimana tren inflasi Indonesia berkembang dari waktu ke waktu? Komponen inflasi mana yang ikut mendorong pergerakan harga, dan bagaimana perubahan BI Rate berkaitan dengan tren inflasi?",
+  pb_m1:"Membangun dashboard interaktif tiga halaman dari data bulanan inflasi Indonesia dan BI Rate. Prosesnya meliputi persiapan data, pembuatan tabel tanggal, pemodelan data, penulisan measure DAX, dan visualisasi deret waktu.",
+  pb_m2:"Isi dashboard:",
+  pb_l1:"Inflation Overview: memantau inflasi umum (YoY, MtM, dan YtD) serta tren BI Rate.",
+  pb_l2:"Inflation Drivers: membandingkan Inflasi Inti, Volatile Food, dan Administered Prices dari waktu ke waktu.",
+  pb_l3:"Monetary Policy Analysis: melihat hubungan antara pergerakan BI Rate dan inflasi tahunan (YoY).",
+  dash_docs:"Pratinjau Dashboard",thesis_docs:"Visual Skripsi",
+  pb_pdf:"Laporan Dashboard (PDF)",pb_pbix:"File Power BI (.pbix)",
+  pb_note:"Laporan interaktif bisa dijelajahi dengan Power BI Desktop.",
+  exp_pill:"Pengalaman",c_all:"Semua",c_work:"Kerja",c_intern:"Magang",c_org:"Organisasi",
+  t1_t:"Tutor Matematika",t1_d:"Feb 2026 — Sekarang",
+  t1_p:"Mengelola sesi belajar privat dan kelompok untuk 70+ siswa dan memantau perkembangan dari hasil latihan dan asesmen. Menyusun laporan perkembangan berkala dan mengomunikasikan hasilnya kepada orang tua dan lembaga.",
+  t2_t:"Magang Account Management",t2_d:"Feb — Mei 2026",
+  t2_p:"Memantau dan melaporkan performa beberapa akun klien (marketplace, konten digital, kampanye) di Looker Studio. Melacak performa untuk tindak lanjut bersama tim Account Management dan Design, mengelola tugas di Lark Docs, dan menyusun Minutes of Meeting untuk pertemuan klien.",
+  t3_t:"Magang Operasional Cabang",t3_d:"Jul — Agu 2025",
+  t3_p:"Mendukung operasional cabang harian dan proses administrasi, memeriksa dan memproses data serta dokumen operasional agar akurat, dan merapikan catatan keuangan dan operasional.",
+  t4_t:"Kepala Biro Keuangan",t4_d:"Mei 2024 — Mar 2025",
+  t4_p:"Memimpin tim beranggotakan empat orang dalam perencanaan, pemantauan, dan pelaporan keuangan. Mengelola anggaran tahunan lebih dari Rp80 juta untuk 29 program, termasuk pemantauan realisasi dan evaluasi selisih, serta menyusun aturan dan kontrol keuangan untuk transparansi.",
+  t5_t:"Bendahara I",t5_d:"Feb — Jun 2024",
+  t5_p:"Mengelola keuangan acara untuk 120+ peserta, mencakup alokasi anggaran, pemantauan pengeluaran, penggunaan dana, dan laporan pertanggungjawaban tepat waktu.",
+  t6_t:"Bendahara II",t6_d:"Feb 2023 — Jan 2024",
+  t6_p:"Mengelola dana organisasi Rp15 juta, termasuk pemantauan arus kas dan pengeluaran, mengoordinasikan iuran bulanan anggota, dan mengaudit laporan keuangan dari 3 departemen.",
+  t7_t:"Bendahara I",t7_d:"Agu — Des 2023",
+  t7_p:"Memimpin keuangan acara dengan 100+ peserta dan anggaran Rp26 juta. Menyelesaikan pelaporan pertanggungjawaban keuangan tanpa selisih dalam dua minggu, menghasilkan estimasi surplus anggaran 10%.",
+  t8_t:"Admin Penjualan & Entri Data",t8_d:"Des 2019 — 2021",
+  t8_p:"Mengelola administrasi penjualan harian dan pencatatan pesanan, menjaga data stok dan laporan penjualan Excel (pesanan, penjualan, retur), serta memantau stok untuk mendukung pemenuhan pesanan, berkontribusi pada pertumbuhan penjualan rata-rata 20% per bulan.",
+  k_work:"Kerja",k_intern:"Magang",k_org:"Organisasi",docs:"Dokumentasi",cert_docs:"Sertifikat",
+  cert_pill:"Sertifikasi",cert_sub:"Pencatatan hak cipta dan kursus yang relevan dengan analitik data.",
+  cc1_i:"Direktorat Jenderal Kekayaan Intelektual (DJKI)",cc1_t:"Pencatatan Hak Cipta — Program Komputer",
+  cc1_p:"Workflow KNIME untuk Model Regresi Random Forest untuk Prediksi Land Surface Temperature di Kota Surabaya dengan Interpretasi Feature Importance.",
+  cert_view:"Lihat Sertifikat",cc4_p:"Menyelesaikan kursus 2,5 jam yang diajar oleh Meet Doshi.",cc2_p:"Menyelesaikan kursus Data Analysis Fundamental.",cc3_p:"Menyelesaikan kursus Basic SQL.",
+  contact_pill:"Mari Terhubung",contact_title:"Terbuka untuk kolaborasi",
+  contact_p:"Saya terbuka untuk posisi data analytics, business analytics, dan keuangan, juga proyek dan diskusi kuantitatif. Silakan hubungi lewat kanal di samping.",
+  email_me:"Kirim Email",foot:"Matematika · Data · Keuangan",brand:"Portofolio"
+}};
+const titles = {en:"Natasya Pradini Putri | Data & Analytics Portfolio",id:"Natasya Pradini Putri | Portofolio Data & Analitik"};
+
+const nodes = document.querySelectorAll("[data-i18n],[data-i18n-html]");
+nodes.forEach(el => { el.dataset.en = el.hasAttribute("data-i18n-html") ? el.innerHTML : el.textContent; });
+
+function setLang(l) {
+  nodes.forEach(el => {
+    const key = el.getAttribute("data-i18n") || el.getAttribute("data-i18n-html");
+    const text = l === "id" && T.id[key] ? T.id[key] : el.dataset.en;
+    if (el.hasAttribute("data-i18n-html")) el.innerHTML = text; else el.textContent = text;
+  });
+  document.documentElement.lang = l;
+  document.title = titles[l];
+  try { localStorage.setItem("lang", l); } catch (e) {}
+}
+let lang = "en";
+try { lang = localStorage.getItem("lang") || "en"; } catch (e) {}
+if (lang === "id") setLang("id");
+document.getElementById("langBtn").addEventListener("click", () => { lang = lang === "en" ? "id" : "en"; setLang(lang); });
+
+/* ---------- THEME ---------- */
+const root = document.documentElement, themeBtn = document.getElementById("themeBtn");
+function setTheme(t) {
+  root.setAttribute("data-theme", t);
+  themeBtn.textContent = t === "dark" ? "☾" : "☀";
+  try { localStorage.setItem("theme", t); } catch (e) {}
+}
+let theme = "light";
+try { theme = localStorage.getItem("theme") || "light"; } catch (e) {}
+setTheme(theme);
+themeBtn.addEventListener("click", () => setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark"));
+
+/* ---------- CV DROPDOWN ---------- */
+const cvMenu = document.getElementById("cvMenu"), cvBtn = document.getElementById("cvBtn");
+cvBtn.addEventListener("click", e => { e.stopPropagation(); cvBtn.setAttribute("aria-expanded", cvMenu.classList.toggle("open")); });
+document.addEventListener("click", () => { cvMenu.classList.remove("open"); cvBtn.setAttribute("aria-expanded", "false"); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") cvMenu.classList.remove("open"); });
+
+/* ---------- NAV ---------- */
+const navLinks = document.getElementById("navLinks");
+const links = [...navLinks.querySelectorAll("a")];
+document.getElementById("menuBtn").addEventListener("click", () => navLinks.classList.toggle("open"));
+links.forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  const id = a.getAttribute("href").slice(1);
+  if (!id) return;
+  a.addEventListener("click", e => {
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    const y = id === "home" ? 0 : target.getBoundingClientRect().top + window.scrollY - 70;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    links.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + id));
+  });
+});
+
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) links.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + en.target.id));
+  });
+}, { rootMargin: "-45% 0px -50% 0px" });
+document.querySelectorAll("main section").forEach(s => spy.observe(s));
+
+/* ---------- EXPERIENCE FILTER ---------- */
+const chips = document.querySelectorAll(".chip");
+chips.forEach(chip => chip.addEventListener("click", () => {
+  chips.forEach(c => c.classList.remove("active"));
+  chip.classList.add("active");
+  const f = chip.dataset.filter;
+  document.querySelectorAll(".tl-item").forEach(item => item.classList.toggle("hide", f !== "all" && item.dataset.kind !== f));
+}));
+
+/* ---------- REVEAL ---------- */
+const rev = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); rev.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll(".reveal").forEach(el => rev.observe(el));
+</script>
+</body>
+</html>
